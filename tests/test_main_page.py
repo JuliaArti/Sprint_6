@@ -1,32 +1,9 @@
+import allure
 import pytest
-from selenium import webdriver
 from selenium.webdriver.firefox.webdriver import WebDriver
 from urls import *
-# from locators.main_page_locators import LocatorsMain
-# from locators.order_page_locators import LocatorsOrder
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
 from data import *
 from pages.main_page import MainPageScooter
-
-
-
-
-
-# class TestMainPageFaq:
-#     @allure.title('Проверка раздела "Вопроса о важном"')
-#     @alure.description('Проверка появления нужного текста  при нажатиина каждую иконку развертывается верный ответ"')
-#     @pytest.mark.parametrize('question_number, expected_answer', TestData.test_data_question_answer)
-#     def test_click_faq_expand_icons_text_is_expected(self, driver, quesion_number, expected_answer)
-#         main_page = MainPage(driver)
-#         main_page.scroll_to_faq_section()
-#         main_page.wait_visibility_of_faq_items(quesion_number)
-#         assert main_page.get_displayed_text_from_faq_answer(quesion_number) == expected_answer
-
-
-
-
 
 
 class TestFAQ:
@@ -41,6 +18,8 @@ class TestFAQ:
         ("accordion__heading-7", '//div[@id="accordion__panel-7"]//p', 'Да, обязательно. Всем самокатов! И Москве, и Московской области.')
     ])
 
+    @allure.title('Проверка раздела "Вопроса о важном"')
+    @allure.description('Проверка появления нужного текста  при нажатиина каждую иконку развертывается верный ответ"')
     def test_faq(self, driver: WebDriver, id_question, id_answer, answer_text):
         driver.get(main_site)
         

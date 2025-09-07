@@ -1,3 +1,4 @@
+import allure
 from locators.main_page_locators import LocatorsMain
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +10,7 @@ class MainPageScooter:
     def __init__(self, driver):
         self.driver = driver        
     
-    # Открываем стартовую страницу и кликаем кнопку "Заказать" внизу страницы
+    @allure.step('Кликаем кнопку "Заказать" внизу страницы')
     def click_button_order_down(self):
         
         WebDriverWait(self.driver, 10).until(
@@ -19,7 +20,7 @@ class MainPageScooter:
         self.driver.execute_script("arguments[0].scrollIntoView();", button_order_down) 
         button_order_down.click()
  
-    # Кликаем на вопрос    
+    @allure.step('Кликаем на вопрос')   
     def click_faq_section(self, id_question):    
     
         WebDriverWait(self.driver, 10).until(
@@ -31,7 +32,7 @@ class MainPageScooter:
         how_much = self.driver.find_element(By.ID, id_question)
         how_much.click()
 
-
+    @allure.step('Проверяем ответ на вопрос')
     def get_faq_answer_text(self, id_answer):
         
         WebDriverWait(self.driver, 10).until(

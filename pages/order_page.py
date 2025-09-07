@@ -1,4 +1,4 @@
-from selenium.webdriver.common.by import By
+import allure
 from locators.order_page_locators import LocatorsOrder
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,6 +10,7 @@ class OrderPageScooter:
     def __init__(self, driver):
         self.driver = driver  
 
+    @allure.step('Заполняем форму с данными клиента')
     def fill_customer_form (self, name, lastname, address, station_metro_name, phone):
         # Заполняем форму заказа
         name_field = self.driver.find_element(*LocatorsOrder.input_field_name)
@@ -35,13 +36,13 @@ class OrderPageScooter:
 
         phone_field.send_keys(phone)
     
-    
+    @allure.step('Нажимаем кнопку Далее')
     def click_button_next(self):
         
         button_next = self.driver.find_element(*LocatorsOrder.button_next)
         button_next.click()
 
-    
+    @allure.step('Переход на форму бронирования самоката')
     def fill_scooter_form (self,date, rental_period_time, color_scooter_name):    
         # Переходим на вторую часть формы заказа
         WebDriverWait(self.driver, 10).until(
@@ -67,7 +68,7 @@ class OrderPageScooter:
 
         color_scooter_black.click()
 
-
+    @allure.step('Переход на форму подтверждения')
     def click_button_order(self):    
 
         button_order = self.driver.find_element(*LocatorsOrder.button_order)
@@ -76,7 +77,7 @@ class OrderPageScooter:
             EC.presence_of_element_located(LocatorsOrder.button_consent)
         )
 
-
+    @allure.step('Подтверждение заказа')
     def click_button_consent(self):
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(LocatorsOrder.button_consent)
@@ -84,7 +85,7 @@ class OrderPageScooter:
         button_consent = self.driver.find_element(*LocatorsOrder.button_consent)
         button_consent.click()    
 
-
+    @allure.step('Проверяем что заказ оформлен')
     def check_order_scooter(self):
         return WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(LocatorsOrder.order_finish)

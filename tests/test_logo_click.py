@@ -1,41 +1,15 @@
-#import pytest
-#from selenium import webdriver
+import allure
 from selenium.webdriver.firefox.webdriver import WebDriver
 from urls import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-#from locators.order_page_locators import LocatorsOrder
-
-#from selenium.webdriver.common.by import By
-#from data import Credential 
 from data import *
 from pages.base_page import BasePageScooter
 
-# @pytest.fixture
-# def driver():
-#     driver = webdriver.Firefox()
-#     driver.maximize_window()
-#     yield driver
-#     driver.quit()
-
-#class TestLogo:
-#     @allure.title('Проверка переходана на гл страницу при клике на лого "Самокат"')
-#     def test_logo_main_page(self, driver):
-#         main_page = MainPage(driver)
-#         main_page.wait_visibility_of_order_button_in_header()
-#         main_page.click_on_order_button_up() # button_in_header
-#         main_page.wait_visibility_of_title_scooter() #header_logo_scooter
-#         main_page.wait_visibility_of_main_header()
-#         assert main_page.check_displaying_of_main_header()
-
-
-
-
-
-
-
 class TestPageTransfers:
     
+    @allure.title('Проверка переходана на гл страницу при клике на лого Самокат')
+    @allure.description('Переход с главной страницы на форму бронирования, клик на лого Самокат')
     def test_scooter(self, driver: WebDriver):
         driver.get(main_site)
 
@@ -49,7 +23,8 @@ class TestPageTransfers:
         
         
         
-        
+    @allure.title('Проверка переходана на  страницу Дзен при клике на лого Яндекс')
+    @allure.description('Переход с главной страницы  на новую вкладку Дзен')    
     def test_yandex(self, driver: WebDriver):
         driver.get(main_site)
         
