@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,14 +18,14 @@ class TestOrderScooter:
         (name_2, lastname_2, address_2, metro_station_2, phone_number_2, date_2, rental_period_time_2, color_scooter_2)
 
     ])
-
+    @allure.title('Проверяем функционал заказа') # декораторы
+    @allure.description('На главной странице нажимаем на кнопку Заказать вверху, заполняем форму на двух страницах, проверяем что заказ создан')
     # Открываем стартовую страницу и кликаем кнопку "Заказать" в верху страницы
     def test_start_page_and_order_up(self, driver: WebDriver, name, lastname, address, station_metro_name, phone, date, rental_period_time, color_scooter_name):
         driver.get(main_site)
 
         base_page = BasePageScooter(driver)
         base_page.click_button_order_up()
-
 
         # Заполняем форму заказа
         order_page = OrderPageScooter(driver)
@@ -35,8 +36,9 @@ class TestOrderScooter:
         order_page.click_button_consent()
         assert order_page.check_order_scooter()
         
-    
 
+    @allure.title('Проверяем функционал перехода на страницу заказа')
+    @allure.description('На главной странице нажимаем на кнопку Заказать внизу, проверяем переход на форму бронирования')
     # Открываем стартовую страницу и кликаем кнопку "Заказать" внизу страницы
     def test_start_page_and_order_down(self, driver: WebDriver):
         driver.get(main_site)
@@ -44,6 +46,6 @@ class TestOrderScooter:
         main_page = MainPageScooter(driver)
         main_page.click_button_order_down()
      
-        assert WebDriverWait(driver, 10).until(
+        assert WebDriverWait(driver, 10).until( 
             EC.url_to_be(order_site)
         )
