@@ -9,7 +9,7 @@ class LocatorsMain:
     button_order_down = (By.XPATH, "//button[contains(@class, 'Button_UltraBig__UU3Lp')]")
 
     # Надпись "Самокат"
-    title_scooter= (By.XPATH, "//a[contains(@class, 'Header_LogoScooter__3lsAR')]")# //img[@src='/assets/scooter.svg' and @alt='Scooter']"
+    title_scooter= (By.XPATH, "//a[contains(@class, 'Header_LogoScooter__3lsAR')]")
 
     # Надпись "Яндекс"
     title_yandex = (By.XPATH, "//a[contains(@class, 'Header_LogoYandex__3TSOI')]")
