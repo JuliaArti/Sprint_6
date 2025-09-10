@@ -4,7 +4,7 @@ from urls import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from data import *
-from pages.base_page import BasePageScooter
+from pages.main_page import MainPageScooter
 
 class TestPageTransfers:
     
@@ -14,9 +14,9 @@ class TestPageTransfers:
         driver.get(main_site)
 
 
-        base_page = BasePageScooter(driver)
-        base_page.click_button_order_up()
-        base_page.click_title_scooter()
+        main_page = MainPageScooter(driver)
+        main_page.click_button_order_up()
+        main_page.click_title_scooter()
         assert WebDriverWait(driver, 10).until(
             EC.url_to_be(main_site)
         )
@@ -28,8 +28,8 @@ class TestPageTransfers:
     def test_yandex(self, driver: WebDriver):
         driver.get(main_site)
         
-        base_page = BasePageScooter(driver)
-        base_page.click_yandex_logo()
+        main_page = MainPageScooter(driver)
+        main_page.click_yandex_logo()
 
            
         # Ждем открытия новой вкладки

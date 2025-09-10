@@ -3,9 +3,9 @@ from locators.order_page_locators import LocatorsOrder
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from urls import *
+from pages.base_page import BasePageScooter
 
-
-class OrderPageScooter:
+class OrderPageScooter(BasePageScooter):
 
     def __init__(self, driver):
         self.driver = driver  

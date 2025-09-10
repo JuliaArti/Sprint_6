@@ -7,7 +7,7 @@ from data import *
 from urls import *
 from pages.main_page import MainPageScooter
 from pages.order_page import OrderPageScooter
-from pages.base_page import BasePageScooter
+
 
 
 
@@ -24,11 +24,10 @@ class TestOrderScooter:
     def test_start_page_and_order_up(self, driver: WebDriver, name, lastname, address, station_metro_name, phone, date, rental_period_time, color_scooter_name):
         driver.get(main_site)
 
-        base_page = BasePageScooter(driver)
-        base_page.click_button_order_up()
+        order_page = OrderPageScooter(driver)
+        order_page.click_button_order_up()
 
         # Заполняем форму заказа
-        order_page = OrderPageScooter(driver)
         order_page.fill_customer_form(name, lastname, address, station_metro_name, phone)
         order_page.click_button_next()
         order_page.fill_scooter_form(date, rental_period_time, color_scooter_name)
