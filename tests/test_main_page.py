@@ -27,4 +27,4 @@ class TestFAQ:
         main_page.click_faq_section(id_question)
         answer_1 = main_page.get_faq_answer_text(id_answer)
                    
-        assert answer_text in answer_1.text
+        assert answer_text in answer_1
