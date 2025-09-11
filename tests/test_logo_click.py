@@ -1,8 +1,6 @@
 import allure
 from selenium.webdriver.firefox.webdriver import WebDriver
 from urls import *
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 from data import *
 from pages.main_page import MainPageScooter
 
@@ -11,33 +9,25 @@ class TestPageTransfers:
     @allure.title('Проверка переходана на гл страницу при клике на лого Самокат')
     @allure.description('Переход с главной страницы на форму бронирования, клик на лого Самокат')
     def test_scooter(self, driver: WebDriver):
-        driver.get(main_site)
-
-
+       
         main_page = MainPageScooter(driver)
+        main_page.open_main_page()
         main_page.click_button_order_up()
         main_page.click_title_scooter()
-        assert WebDriverWait(driver, 10).until(
-            EC.url_to_be(main_site)
-        )
+        assert main_page.wait_loading_of_url(main_site)
         
-        
-        
+                
     @allure.title('Проверка переходана на  страницу Дзен при клике на лого Яндекс')
     @allure.description('Переход с главной страницы  на новую вкладку Дзен')    
     def test_yandex(self, driver: WebDriver):
-        driver.get(main_site)
-        
+             
         main_page = MainPageScooter(driver)
+        main_page.open_main_page()
         main_page.click_yandex_logo()
 
            
-        # Ждем открытия новой вкладки
-        WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
-
         # Переключаемся на новую вкладку
-        driver.switch_to.window(driver.window_handles[-1])
+        main_page.switch_to_next_tab()
 
-        assert WebDriverWait(driver, 10).until(
-            EC.url_contains(ya_dzen)
-        )
+        assert main_page.wait_loading_of_url(ya_dzen)
+        

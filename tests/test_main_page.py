@@ -21,10 +21,9 @@ class TestFAQ:
     @allure.title('Проверка раздела "Вопроса о важном"')
     @allure.description('Проверка появления нужного текста  при нажатиина каждую иконку развертывается верный ответ"')
     def test_faq(self, driver: WebDriver, id_question, id_answer, answer_text):
-        driver.get(main_site)
-        
         main_page = MainPageScooter(driver)
-        main_page.click_faq_section(id_question)
+        main_page.open_main_page()
+        main_page.click_faq_section(id_question) 
         answer_1 = main_page.get_faq_answer_text(id_answer)
                    
         assert answer_text in answer_1
